@@ -12,7 +12,7 @@ import (
 
 func TestHealthCheck(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/health", nil)
-	w := httptest.NewRecorder()
+	_ = httptest.NewRecorder()
 
 	handler.HealthCheck(w, req)
 
@@ -33,7 +33,7 @@ func TestCreateTransaction_InvalidBody(t *testing.T) {
 	body := bytes.NewBufferString(`{invalid json}`)
 	req := httptest.NewRequest(http.MethodPost, "/api/v1/transactions", body)
 	req.Header.Set("Content-Type", "application/json")
-	w := httptest.NewRecorder()
+	_ = httptest.NewRecorder()
 
 	// We'd need a full handler setup with service + repo to test fully.
 	// This is a demonstration of the testing pattern.
